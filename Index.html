@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>love notes app</title>
+  <link rel="stylesheet"
+href="style.css">
+<head>
+<body>
+  <h1> Welcome to love notes</h1>
+  <print>"body {
+  background-color: #ffe6e6;
+  font-family: 'Comic Sans MS', cursive;
+  text-align: center;
+  padding: 20px;
+  color: #333;
+}
+
+h1 {
+  color: #d147a3;
+  font-size: 36px;
+}
+
+form {
+  background-color: #fff0f5;
+  border: 2px solid #ffb6c1;
+  padding: 20px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 15px;
+}
+
+input, textarea, button {
+  margin: 10px 0;
+  padding: 10px;
+  width: 90%;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button {
+  background-color: #ff66b2;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e60073;
+}
+
+#notesContainer {
+  margin-top: 30px;
+}
+.note {
+  background-color: #fff;
+  border: 2px dashed #ff99cc;
+  padding: 15px;
+  margin: 15px;
+  border-radius: 10px;
+}document.getElementById("noteForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const message = document.getElementById("message").value;
+  const date = document.getElementById("date").value;
+
+  const note = {
+    title,
+    message,
+    date,
+  };
+
+  let notes = JSON.parse(localStorage.getItem("notes")) || [];
+  notes.push(note);
+  localStorage.setItem("notes", JSON.stringify(notes));
+
+  document.getElementById("noteForm").reset();
+  displayNotes();
+});
+
+function displayNotes() {
+  const notes = JSON.parse(localStorage.getItem("notes")) || [];
+  const container = document.getElementById("notesContainer");
+  container.innerHTML = "";
+
+  notes.forEach((note, index) => {
+    const div = document.createElement("div");
+    div.className = "note";
+    div.innerHTML = `
+      <h3>${note.title}</h3>
+      <p>${note.message}</p>
+      <small>${note.date}</small><br>
+      <button onclick="deleteNote(${index})">Delete</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function deleteNote(index) {
+  let notes = JSON.parse(localStorage.getItem("notes")) || [];
+  notes.splice(index, 1);
+  localStorage.setItem("notes", JSON.stringify(notes));
+  displayNotes();
+}
+
+// Page load par notes dikhaye
+displayNotes();afreen"</print>
+  <from id="noteform">
+     <input type"text" id="title"
+placeholder="note title" required><br>
+     <text area id="message"
+ placeholder="your love Message..."
+ required><</textarea><br>
+     <input type="date" id="date"<>br>
+     <input type="file" id="image"<>br>
+     <button type="submit"<Add note</
+button>
+  </form>
+  
+<h2>your love notes</h2>
+<div id="noticecontainer"><</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
